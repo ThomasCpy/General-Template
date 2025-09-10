@@ -1,0 +1,146 @@
+\documentclass[a4paper,landscape]{article}
+%Template by Charpenay Thomas
+\usepackage{amssymb,amsmath,amsthm,amsfonts}
+\usepackage{multicol,multirow}
+\usepackage{calc}
+\usepackage{ifthen}
+\usepackage[columns=4]{idxlayout}
+\usepackage{makeidx}
+\usepackage{lipsum}
+\usepackage{subfigure}
+\usepackage[landscape]{geometry}
+\usepackage[colorlinks=true,citecolor=blue,linkcolor=blue]{hyperref}
+\usepackage{graphicx}
+\usepackage{wrapfig}
+\usepackage{titlesec}
+\usepackage{enumitem}
+\usepackage{fancyhdr}
+\usepackage{comment}
+
+\newcommand{\diamonditem}[1]{\item[$\diamond$] \textbf{#1}}
+
+\geometry{top=1cm,left=1cm,right=1cm,bottom=1cm} 
+\newcommand{\img}[2][90mm] 
+{\includegraphics[width=#1]{#2}}
+%Since I was using width=90mm so much I redefined it as a default parameter, but it still seems simpler to center and add the image with a width argument
+\makeatletter
+\newcommand\textbox[1]{%
+  \parbox{.333\textwidth}{#1}%
+}
+\renewcommand{\section}{\@startsection{section}{1}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%x
+                                {\normalfont\large\bfseries\underline}}
+\renewcommand{\subsection}{\@startsection{subsection}{2}{0mm}%
+                                {-1explus -.5ex minus -.2ex}%
+                                {0.5ex plus .2ex}%
+                                {\normalfont\normalsize\bfseries}}
+\renewcommand{\subsubsection}{\@startsection{subsubsection}{3}{0mm}%
+                                {-1ex plus -.5ex minus -.2ex}%
+                                {1ex plus .2ex}%
+                                {\normalfont\small\bfseries}}
+\makeatother
+\setcounter{secnumdepth}{0}
+\setlength{\parindent}{0pt}
+\setlength{\parskip}{0pt plus 0.5ex}
+\makeindex 
+%For the custom idx command
+\DeclareRobustCommand{\idx}[1]{\textit{#1}\index{By alphabetical order:!#1}}
+% -----------------------------------------------------------------------
+\begin{document}
+%Page de garde et sommaire----------------------------------------------
+\raggedright
+\footnotesize
+
+\begin{center}
+\vspace*{50pt}
+\includegraphics{Title page/EPFL.png}
+
+\hspace{0pt}
+\vfill
+\vspace*{-100pt}
+{\Huge [Lecture Title Placeholder]}
+\vfill
+\hspace{0pt}
+\hrule
+\end{center}
+\noindent\textbox{[TIME PLACEHOLDER ]\hfill}\textbox{\hfil SV [SEMESTER]\hfil}\textbox{\hfill Charpenay Thomas}
+\thispagestyle{empty}
+\pagebreak
+\thispagestyle{empty}
+\clearpage\shipout\null
+\begin{multicols}{3}
+\setlength{\premulticols}{1pt}
+\setlength{\postmulticols}{1pt}
+\setlength{\multicolsep}{1pt}
+\setlength{\columnsep}{2pt}
+\newpage
+\tableofcontents
+\thispagestyle{empty}
+\newpage
+
+
+\pagestyle{fancy}
+
+% Clear all header and footer fields
+\fancyhf{}
+
+% We make the left footer to display the current section name, right footer to get the page.
+\fancyfoot[L]{\raisebox{5mm}{\leftmark}}
+\fancyfoot[R]{\raisebox{5mm}{\thepage}}
+
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0.5pt}
+
+\pagenumbering{arabic}
+
+%Debut du cours------------------------------------------------
+\section{Section}
+\subsection{Subsection}
+\subsubsection{Subsubsection}
+This is a typical organisation, declaring a new subsection or section will immediately end the current subsubsection. Any addition of either section depth will result in the addition of the name and page number in the table of contents. This text isn't a tutorial, it is a placeholder
+
+\begin{itemize}
+    \item[$\diamond$] This is an itemized item
+    \item[$\diamond$] This is another itemized item
+    \item[$\diamond$] This is another itemized item
+    \item[$\diamond$] Guess what?! This isn't another itemized item
+    \item[$\diamond$] Just kidding, it was an itemized item
+\end{itemize}
+ However, a more elegant approach would be:
+ \begin{itemize}
+     \diamonditem{This is bold} and this isn't
+     \diamonditem{}All of this thanks to the new definition of diamonditem
+ \end{itemize}
+ We can also seperate text!
+ \smallskip
+
+ That was a small separation mediated by smallskip
+ \medskip
+
+That was medium separation mediated by medskip
+\newline
+This is just the declaration of a newline, indentation without spacing
+\medskip
+
+To add a given word to the index, just enclose it in \text{'\idx{}'} Such as these words: \idx{ABCDE}, \idx{BCDEF}, \idx{CDEFG}
+
+\begin{comment}
+To add larger sections that should not appear in the final pdf rendering, it's simpler to add such a comment environment. 
+\end{comment}
+%Fin du cours--------------------------------------------------
+
+%FILLER SECTION, REMOVE WHEN DOC IS FINISHED
+\LaTeX
+\lipsum[]
+\lipsum[]
+%END OF FILLER SECTION
+
+\newpage
+\clearpage
+\end{multicols}
+% AUTO INDEX
+\printindex
+
+\newpage
+\end{document}
